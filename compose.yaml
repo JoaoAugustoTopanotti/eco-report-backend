@@ -1,4 +1,3 @@
-
 services:
   postgres:
     image: postgres:17
@@ -12,6 +11,25 @@ services:
       - "5440:5432"
     volumes:
       - eco_report_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U eco_user -d eco_report"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    build: .
+    container_name: eco-report-app
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/eco_report
+      SPRING_DATASOURCE_USERNAME: eco_user
+      SPRING_DATASOURCE_PASSWORD: eco_password
+    depends_on:
+      postgres:
+        condition: service_healthy
 
 volumes:
   eco_report_data:
