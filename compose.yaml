@@ -1,0 +1,17 @@
+
+services:
+  postgres:
+    image: postgres:17
+    container_name: eco-report-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: eco_report
+      POSTGRES_USER: eco_user
+      POSTGRES_PASSWORD: eco_password
+    ports:
+      - "5440:5432"
+    volumes:
+      - eco_report_data:/var/lib/postgresql/data
+
+volumes:
+  eco_report_data:
