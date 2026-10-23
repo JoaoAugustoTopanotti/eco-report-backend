@@ -1,3 +1,4 @@
+
 package com.unisatc.eco_report.category;
 
 import jakarta.persistence.Column;
@@ -6,7 +7,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
 
 @Entity
 @Table(name = "categories")
@@ -23,5 +23,17 @@ public class Category {
     private String status = "ACTIVE";
 
     protected Category() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }
