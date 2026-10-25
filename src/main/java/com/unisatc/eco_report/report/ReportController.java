@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.unisatc.eco_report.report.dto.CreateReportRequest;
 import com.unisatc.eco_report.report.dto.ReportResponse;
 import com.unisatc.eco_report.report.dto.UpdateReportStatus;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/reports")
@@ -40,11 +41,12 @@ public class ReportController {
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public ReportResponse create(
-        @RequestBody CreateReportRequest request
+    public ResponseEntity<ReportResponse> create(
+            @Valid @RequestBody CreateReportRequest request
     ) {
-        return reportService.create(request);
+        ReportResponse response = reportService.create(request);
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
     
     @PatchMapping("/{id}/status")

@@ -44,6 +44,7 @@ public class ReportService {
     @Transactional(readOnly = true)
     public ReportResponse findById(Long id) {
         Report report = reportRepository.findById(id)
+            .filter(r -> !r.isDeleted())
             .orElseThrow(() -> new ResponseStatusException(
                 HttpStatus.NOT_FOUND,
                 "Denúncia não encontrada"
