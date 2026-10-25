@@ -142,4 +142,12 @@ public class Report {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public void setStatus(String status) {
+    this.status = status;
+}
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
 }
