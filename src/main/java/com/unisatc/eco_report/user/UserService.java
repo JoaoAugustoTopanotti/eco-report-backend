@@ -17,10 +17,15 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final UserMapper userMapper;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(
+        UserRepository userRepository,
+        UserMapper userMapper
+    ) {
         this.userRepository = userRepository;
         this.passwordEncoder = new BCryptPasswordEncoder();
+        this.userMapper = userMapper;
     }
 
     @Transactional
@@ -48,7 +53,7 @@ public class UserService {
                 "Usuário não encontrado"
             ));
 
-        return UserResponse.from(user);
+        return userMapper.toResponse(user);
     }
 
     @Transactional(readOnly = true)

@@ -20,15 +20,18 @@ public class ReportService {
     private final ReportRepository reportRepository;
     private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
+    private final ReportMapper reportMapper;
 
     public ReportService(
         ReportRepository reportRepository,
         CategoryRepository categoryRepository,
-        UserRepository userRepository
+        UserRepository userRepository,
+        ReportMapper reportMapper
     ) {
         this.reportRepository = reportRepository;
         this.categoryRepository = categoryRepository;
         this.userRepository = userRepository;
+        this.reportMapper = reportMapper;
     }
 
     @Transactional(readOnly = true)
@@ -50,7 +53,7 @@ public class ReportService {
                 "Denúncia não encontrada"
             ));
 
-        return ReportResponse.from(report);
+        return reportMapper.toResponse(report);
     }
 
     @Transactional
@@ -76,7 +79,7 @@ public class ReportService {
 
         Report savedReport = reportRepository.save(report);
 
-        return ReportResponse.from(savedReport);
+        return reportMapper.toResponse(savedReport);
     }
 
     private static final java.util.Set<String> VALID_STATUSES =
