@@ -1,3 +1,4 @@
+
 package com.unisatc.eco_report.category;
 
 import java.util.List;
@@ -6,19 +7,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.unisatc.eco_report.category.dto.CategoryResponse;
+
 @RestController
 @RequestMapping("/api/categories")
 public class CategoryController {
-    
+
     private final CategoryService categoryService;
 
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
 
-    @GetMapping 
-    public List<Category> findAll() {
+    @GetMapping
+    public List<CategoryResponse> findAll() {
         return categoryService.findAll();
     }
 }
-
