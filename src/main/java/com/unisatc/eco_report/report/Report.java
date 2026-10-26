@@ -66,6 +66,10 @@ public class Report {
     protected Report() {
     }
 
+    public static Report create() {
+        return new Report();
+    }
+
     @PrePersist
     protected void onCreate() {
         LocalDateTime now = LocalDateTime.now();

@@ -1,6 +1,7 @@
 
 package com.unisatc.eco_report.category;
 
+import com.unisatc.eco_report.report.Report;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +27,10 @@ public class Category {
     protected Category() {
     }
 
+    public static Category create() {
+        return new Category();
+    }
+
     public Long getId() {
         return id;
     }
@@ -33,6 +38,8 @@ public class Category {
     public String getName() {
         return name;
     }
+
+    public void setName(String name) { this.name = name; }
 
     public String getStatus() {
         return status;

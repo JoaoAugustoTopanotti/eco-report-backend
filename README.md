@@ -95,6 +95,12 @@ Em seguida, no Windows, execute a aplicação:
 .\mvnw.cmd spring-boot:run
 ```
 
+Ou, caso queira popular o banco, execute a aplicação junto das seeds:
+
+```powershell
+.\mvnw spring-boot:run -Dspring-boot.run.arguments=--app.seed=true
+```
+
 O PostgreSQL fica exposto na porta `5440` do host, e a aplicação utiliza a porta `8081`.
 
 As tabelas do banco de dados são gerenciadas pelo Flyway durante a inicialização.

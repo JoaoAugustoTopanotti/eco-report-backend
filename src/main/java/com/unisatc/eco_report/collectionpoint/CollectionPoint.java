@@ -2,6 +2,7 @@ package com.unisatc.eco_report.collectionpoint;
 
 import java.time.LocalDateTime;
 
+import com.unisatc.eco_report.category.Category;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -38,6 +39,10 @@ public class CollectionPoint {
     private LocalDateTime updatedAt;
 
     protected CollectionPoint() {
+    }
+
+    public static CollectionPoint create() {
+        return new CollectionPoint();
     }
 
     @PrePersist
