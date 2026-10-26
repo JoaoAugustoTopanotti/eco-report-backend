@@ -52,10 +52,17 @@ public class ReportImageService {
 
     @Transactional
     public ReportImageResponse upload(Long reportId, MultipartFile file) {
-        if (file == null || file.isEmpty()) {
+        if (file == null) {
             throw new ResponseStatusException(
                 HttpStatus.BAD_REQUEST,
-                "Selecione uma imagem."
+                "O arquivo não foi recebido pela API."
+            );
+        }
+
+        if (file.isEmpty()) {
+            throw new ResponseStatusException(
+                HttpStatus.BAD_REQUEST,
+                "O arquivo enviado está vazio."
             );
         }
 

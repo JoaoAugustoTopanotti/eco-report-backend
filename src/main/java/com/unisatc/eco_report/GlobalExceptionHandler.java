@@ -4,10 +4,12 @@ package com.unisatc.eco_report;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
 import org.springframework.web.server.ResponseStatusException;
 
 /** Trata globalmente as exceções e padroniza as respostas de erro da API. */
@@ -38,4 +40,16 @@ public class GlobalExceptionHandler {
                 .status(ex.getStatusCode())
                 .body(Map.of("message", ex.getReason()));
     }
+    
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+        public ResponseEntity<Map<String, String>> handleMaxUploadSizeExceeded(
+                MaxUploadSizeExceededException ex) {
+
+        return ResponseEntity
+                .status(HttpStatusCode.valueOf(413))
+                .body(Map.of(
+                "message",
+                "O arquivo enviado ultrapassa o limite de 5 MB."
+                ));
+        }
 }

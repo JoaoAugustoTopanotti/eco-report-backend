@@ -27,9 +27,13 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/eco_report
       SPRING_DATASOURCE_USERNAME: eco_user
       SPRING_DATASOURCE_PASSWORD: eco_password
+      UPLOAD_DIR: /app/uploads
+    volumes:
+      - eco_report_uploads:/app/uploads
     depends_on:
       postgres:
         condition: service_healthy
 
 volumes:
   eco_report_data:
+  eco_report_uploads:
