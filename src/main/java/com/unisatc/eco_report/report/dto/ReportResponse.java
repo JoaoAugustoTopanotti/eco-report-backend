@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import com.unisatc.eco_report.report.Report;
 
+/** DTO de resposta da API com os dados de uma ocorrência. */
 public record ReportResponse(
     Long id,
     String title,

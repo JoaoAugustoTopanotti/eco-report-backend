@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import com.unisatc.eco_report.user.User;
 
+/** DTO de resposta da API com os dados de um usuário. */
 public record UserResponse(
     Long id,
     String name,

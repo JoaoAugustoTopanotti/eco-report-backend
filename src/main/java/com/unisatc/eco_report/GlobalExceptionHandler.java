@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.server.ResponseStatusException;
 
+/** Trata globalmente as exceções e padroniza as respostas de erro da API. */
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 

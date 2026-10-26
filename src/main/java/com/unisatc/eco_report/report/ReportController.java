@@ -20,6 +20,7 @@ import com.unisatc.eco_report.report.dto.ReportResponse;
 import com.unisatc.eco_report.report.dto.UpdateReportStatus;
 import jakarta.validation.Valid;
 
+/** Controlador REST que expõe os endpoints de ocorrências. */
 @RestController
 @RequestMapping("/api/reports")
 public class ReportController {

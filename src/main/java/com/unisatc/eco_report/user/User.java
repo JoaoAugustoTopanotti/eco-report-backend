@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
+/** Entidade JPA que representa um usuário do sistema. */
 @Entity
 @Table(name = "users")
 public class User {

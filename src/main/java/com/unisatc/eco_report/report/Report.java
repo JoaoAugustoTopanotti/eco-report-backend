@@ -21,6 +21,7 @@ import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 
+/** Entidade JPA que representa uma ocorrência ambiental registrada por um usuário. */
 @Entity
 @Table(name = "reports")
 public class Report {

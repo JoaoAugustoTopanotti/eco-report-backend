@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.unisatc.eco_report.category.dto.CategoryResponse;
 
+/** Contém as regras de negócio para criação e consulta de categorias. */
 @Service
 public class CategoryService {
 

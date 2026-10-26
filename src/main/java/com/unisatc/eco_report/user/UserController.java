@@ -17,6 +17,7 @@ import com.unisatc.eco_report.user.dto.UserResponse;
 
 import jakarta.validation.Valid;
 
+/** Controlador REST que expõe os endpoints de usuários. */
 @RestController
 @RequestMapping("/api/users")
 public class UserController {

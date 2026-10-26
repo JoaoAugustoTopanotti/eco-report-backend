@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+/** DTO de requisição com os dados para criar um usuário. */
 public record CreateUserRequest(
 
     @NotBlank(message = "O nome é obrigatório")

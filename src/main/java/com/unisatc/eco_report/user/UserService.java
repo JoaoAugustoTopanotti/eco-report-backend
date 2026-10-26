@@ -12,6 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.unisatc.eco_report.user.dto.CreateUserRequest;
 import com.unisatc.eco_report.user.dto.UserResponse;
 
+/** Contém as regras de negócio para criação e consulta de usuários. */
 @Service
 public class UserService {
 

@@ -14,6 +14,7 @@ import com.unisatc.eco_report.report.dto.ReportResponse;
 import com.unisatc.eco_report.user.User;
 import com.unisatc.eco_report.user.UserRepository;
 
+/** Contém as regras de negócio para criação, consulta, atualização e exclusão de ocorrências. */
 @Service 
 public class ReportService {
     

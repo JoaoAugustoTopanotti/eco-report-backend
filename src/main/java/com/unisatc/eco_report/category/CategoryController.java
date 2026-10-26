@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.unisatc.eco_report.category.dto.CategoryResponse;
 
+/** Controlador REST que expõe os endpoints de categorias. */
 @RestController
 @RequestMapping("/api/categories")
 public class CategoryController {

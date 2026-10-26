@@ -1,3 +1,4 @@
+
 package com.unisatc.eco_report.report;
 
 import java.time.LocalDateTime;
@@ -13,10 +14,14 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 
+/**
+ * Representa os metadados de uma imagem associada a uma ocorrência ambiental.
+ * Armazena a referência da imagem e sua data de criação.
+ */
 @Entity
 @Table(name = "report_images")
 public class ReportImage {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,6 +39,10 @@ public class ReportImage {
     protected ReportImage() {
     }
 
+    /**
+     * Preenche a data de criação antes de persistir a imagem,
+     * caso ela ainda não tenha sido definida.
+     */
     @PrePersist
     protected void onCreate() {
         if (createdAt == null) {
