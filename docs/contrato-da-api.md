@@ -2,7 +2,7 @@
 
 ## 1. Visão geral
 
-A API do Eco-Report permite cadastrar usuários, consultar categorias e registrar e consultar ocorrências ambientais.
+A API do Eco-Report permite cadastrar usuários, consultar categorias, registrar e consultar ocorrências ambientais e gerenciar ecopontos.
 
 - **Base URL local:** `http://localhost:8081`
 - **Formato dos dados:** JSON
@@ -10,18 +10,23 @@ A API do Eco-Report permite cadastrar usuários, consultar categorias e registra
 
 ## 2. Rotas disponíveis
 
-| Método | Rota                       | Descrição                                   |
-| ------ | -------------------------- | ------------------------------------------- |
-| GET    | `/api/health`              | Verifica o estado da aplicação              |
-| GET    | `/api/categories`          | Lista categorias                            |
-| POST   | `/api/users`               | Cadastra um usuário                         |
-| GET    | `/api/users`               | Lista usuários                              |
-| GET    | `/api/users/{id}`          | Consulta um usuário pelo ID                 |
-| POST   | `/api/reports`             | Registra uma ocorrência                     |
-| GET    | `/api/reports`             | Lista ocorrências                           |
-| GET    | `/api/reports/{id}`        | Consulta uma ocorrência pelo ID             |
-| PATCH  | `/api/reports/{id}/status` | Atualiza o status de uma ocorrência         |
-| DELETE | `/api/reports/{id}`        | Realiza a exclusão lógica de uma ocorrência |
+| Método | Rota                          | Descrição                                   |
+| ------ | ----------------------------- | ------------------------------------------- |
+| GET    | `/api/health`                 | Verifica o estado da aplicação              |
+| GET    | `/api/categories`             | Lista categorias                            |
+| POST   | `/api/users`                  | Cadastra um usuário                         |
+| GET    | `/api/users`                  | Lista usuários                              |
+| GET    | `/api/users/{id}`             | Consulta um usuário pelo ID                 |
+| POST   | `/api/reports`                | Registra uma ocorrência                     |
+| GET    | `/api/reports`                | Lista ocorrências                           |
+| GET    | `/api/reports/{id}`           | Consulta uma ocorrência pelo ID             |
+| PATCH  | `/api/reports/{id}/status`    | Atualiza o status de uma ocorrência         |
+| DELETE | `/api/reports/{id}`           | Realiza a exclusão lógica de uma ocorrência |
+| POST   | `/api/collection-points`      | Cadastra um ecoponto                        |
+| GET    | `/api/collection-points`      | Lista ecopontos                             |
+| GET    | `/api/collection-points/{id}` | Consulta um ecoponto pelo ID                |
+| PUT    | `/api/collection-points/{id}` | Atualiza um ecoponto                        |
+| DELETE | `/api/collection-points/{id}` | Remove um ecoponto                          |
 
 ### GET `/api/health`
 
@@ -223,7 +228,77 @@ Em caso de sucesso, retorna `204 No Content`, sem corpo na resposta.
 
 - `404 Not Found`: ocorrência inexistente ou já indisponível para exclusão.
 
-## 6. Tratamento de erros
+## 6. Ecopontos
+
+Ecopontos são locais adequados para o descarte de resíduos, como vidro, papel e eletrônicos.
+
+### POST `/api/collection-points`
+
+Cadastra um ecoponto. Em caso de sucesso, retorna `201 Created` com os dados do ecoponto criado.
+
+**Exemplo de requisição:**
+
+```json
+{
+  "name": "Ecoponto Centro",
+  "address": "Rua das Flores, 100",
+  "acceptedMaterials": "Vidro, papel, eletrônicos",
+  "openingHours": "Seg a Sex, 8h às 17h"
+}
+```
+
+O campo `openingHours` é opcional. Os demais campos são obrigatórios.
+
+**Exemplo de resposta:**
+
+```json
+{
+  "id": 1,
+  "name": "Ecoponto Centro",
+  "address": "Rua das Flores, 100",
+  "acceptedMaterials": "Vidro, papel, eletrônicos",
+  "openingHours": "Seg a Sex, 8h às 17h",
+  "createdAt": "2026-10-26T10:00:00",
+  "updatedAt": "2026-10-26T10:00:00"
+}
+```
+
+**Possível erro:**
+
+- `400 Bad Request`: dados inválidos.
+
+### GET `/api/collection-points`
+
+Retorna a lista de ecopontos cadastrados, no mesmo formato da resposta de cadastro.
+
+### GET `/api/collection-points/{id}`
+
+Retorna os dados do ecoponto correspondente ao ID informado.
+
+**Possível erro:**
+
+- `404 Not Found`: ecoponto não encontrado.
+
+### PUT `/api/collection-points/{id}`
+
+Atualiza todos os dados de um ecoponto. O corpo da requisição segue o mesmo formato do cadastro e a resposta retorna `200 OK` com os dados atualizados.
+
+**Possíveis erros:**
+
+- `400 Bad Request`: dados inválidos.
+- `404 Not Found`: ecoponto não encontrado.
+
+### DELETE `/api/collection-points/{id}`
+
+Remove o ecoponto do banco de dados. Diferente das ocorrências, a exclusão é física.
+
+Em caso de sucesso, retorna `204 No Content`, sem corpo na resposta.
+
+**Possível erro:**
+
+- `404 Not Found`: ecoponto não encontrado.
+
+## 7. Tratamento de erros
 
 Os erros da API são tratados centralmente e retornam uma mensagem explicativa em JSON.
 
