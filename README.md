@@ -87,6 +87,14 @@ docker compose up -d --build
 
 O `compose.yaml` inicia o PostgreSQL e a aplicação, construída a partir do `Dockerfile`.
 
+Ou, caso queira popular o banco, execute junto das seeds (PowerShell):
+
+```powershell
+$env:APP_SEED="true"; docker compose up -d --build
+```
+
+As seeds só inserem dados em tabelas vazias, então podem ser executadas mais de uma vez sem duplicar registros. Para recriar o banco do zero, remova os volumes com `docker compose down -v` antes de subir novamente.
+
 ### Opção 2: banco no Docker e aplicação local
 
 Suba apenas o banco de dados:
