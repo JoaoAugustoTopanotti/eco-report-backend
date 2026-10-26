@@ -228,7 +228,69 @@ Em caso de sucesso, retorna `204 No Content`, sem corpo na resposta.
 
 - `404 Not Found`: ocorrência inexistente ou já indisponível para exclusão.
 
-## 6. Ecopontos
+## 6. Imagens das ocorrências
+
+As imagens permitem anexar evidências visuais às ocorrências ambientais. Os arquivos são armazenados no volume de armazenamento da aplicação, enquanto seus metadados ficam no PostgreSQL.
+
+São aceitos arquivos JPEG, PNG e WebP, com tamanho máximo de 5 MB por imagem.
+
+### POST `/api/reports/{reportId}/images`
+
+Envia uma imagem para a ocorrência informada. Em caso de sucesso, retorna `201 Created` com os metadados da imagem.
+
+**Formato da requisição:** `multipart/form-data`
+
+O campo `file` deve conter o arquivo da imagem.
+
+**Exemplo de resposta:**
+
+```json
+{
+  "id": 1,
+  "reportId": 1,
+  "imageUrl": "/api/report-images/1",
+  "createdAt": "2026-10-26T10:00:00"
+}
+```
+
+O campo `imageUrl` representa a rota utilizada para recuperar o arquivo da imagem.
+
+**Possíveis erros:**
+
+- `400 Bad Request`: arquivo vazio, formato inválido, arquivo acima de 5 MB ou tentativa de anexar uma imagem a uma ocorrência excluída.
+- `404 Not Found`: ocorrência não encontrada.
+
+### GET `/api/reports/{reportId}/images`
+
+Retorna a lista de imagens associadas à ocorrência informada.
+
+**Exemplo de resposta:**
+
+```json
+[
+  {
+    "id": 1,
+    "reportId": 1,
+    "imageUrl": "/api/report-images/1",
+    "createdAt": "2026-10-26T10:00:00"
+  }
+]
+```
+
+**Possíveis erros:**
+
+- `404 Not Found`: ocorrência inexistente ou excluída logicamente.
+
+### GET `/api/report-images/{imageId}`
+
+Retorna o arquivo da imagem correspondente ao ID informado. A resposta contém o conteúdo binário da imagem e o tipo de mídia correspondente, permitindo que o navegador exiba a imagem quando suportado.
+
+**Possível erro:**
+
+- `404 Not Found`: metadados ou arquivo da imagem não encontrados no armazenamento.
+
+
+## 7. Ecopontos
 
 Ecopontos são locais adequados para o descarte de resíduos, como vidro, papel e eletrônicos.
 
@@ -298,7 +360,7 @@ Em caso de sucesso, retorna `204 No Content`, sem corpo na resposta.
 
 - `404 Not Found`: ecoponto não encontrado.
 
-## 7. Tratamento de erros
+## 8. Tratamento de erros
 
 Os erros da API são tratados centralmente e retornam uma mensagem explicativa em JSON.
 
