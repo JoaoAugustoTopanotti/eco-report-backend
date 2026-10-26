@@ -3,6 +3,7 @@ package com.unisatc.eco_report.reportImage;
 
 import java.time.LocalDateTime;
 
+import com.unisatc.eco_report.category.Category;
 import com.unisatc.eco_report.report.Report;
 
 import jakarta.persistence.Column;
@@ -41,6 +42,10 @@ public class ReportImage {
     protected ReportImage() {
     }
 
+    public static ReportImage create() {
+        return new ReportImage();
+    }
+
     /**
      * Preenche a data de criação antes de persistir a imagem,
      * caso ela ainda não tenha sido definida.
@@ -65,9 +70,13 @@ public class ReportImage {
         return report;
     }
 
+    public void setReport(Report report) { this.report = report; }
+
     public String getImageUrl() {
         return imageUrl;
     }
+
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 
     public LocalDateTime getCreatedAt() {
         return createdAt;

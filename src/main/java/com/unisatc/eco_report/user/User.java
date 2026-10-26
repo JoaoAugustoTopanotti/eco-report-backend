@@ -3,6 +3,7 @@ package com.unisatc.eco_report.user;
 
 import java.time.LocalDateTime;
 
+import com.unisatc.eco_report.category.Category;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,6 +37,10 @@ public class User {
     private LocalDateTime createdAt;
 
     protected User() {
+    }
+
+    public static User create() {
+        return new User();
     }
 
     @PrePersist
