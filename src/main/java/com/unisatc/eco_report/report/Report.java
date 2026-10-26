@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.unisatc.eco_report.category.Category;
+import com.unisatc.eco_report.reportImage.ReportImage;
 import com.unisatc.eco_report.user.User;
 
 import jakarta.persistence.CascadeType;
@@ -150,5 +151,9 @@ public class Report {
 
     public void setDeleted(boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public void addImage(ReportImage image) {
+    images.add(image);
     }
 }

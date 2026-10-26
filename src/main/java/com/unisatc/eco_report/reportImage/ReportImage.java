@@ -1,7 +1,9 @@
 
-package com.unisatc.eco_report.report;
+package com.unisatc.eco_report.reportImage;
 
 import java.time.LocalDateTime;
+
+import com.unisatc.eco_report.report.Report;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -48,5 +50,26 @@ public class ReportImage {
         if (createdAt == null) {
             createdAt = LocalDateTime.now();
         }
+    }
+
+    public ReportImage(Report report, String imageUrl) {
+    this.report = report;
+    this.imageUrl = imageUrl;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public Report getReport() {
+        return report;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 }
