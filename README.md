@@ -33,6 +33,7 @@ O código-fonte é organizado por entidades e responsabilidades:
 - `user/`: gerenciamento de usuários.
 - `category/`: consulta de categorias de ocorrências.
 - `report/`: registro e consulta de ocorrências ambientais.
+- `collectionpoint/`: cadastro e consulta de ecopontos (locais adequados para o descarte de resíduos).
 - `health/`: endpoint de verificação da aplicação.
 - `GlobalExceptionHandler.java`: tratamento centralizado de erros da API.
 - `src/main/resources/db/migration/`: scripts de criação e evolução do banco de dados.
@@ -43,18 +44,23 @@ Dentro dos módulos, as classes são separadas conforme suas responsabilidades, 
 
 ## Rotas da API
 
-| Método | Rota                       | Descrição                                   |
-| ------ | -------------------------- | ------------------------------------------- |
-| GET    | `/api/health`              | Verifica se a aplicação está no ar          |
-| GET    | `/api/categories`          | Lista categorias                            |
-| POST   | `/api/users`               | Cadastra um usuário                         |
-| GET    | `/api/users`               | Lista usuários                              |
-| GET    | `/api/users/{id}`          | Consulta um usuário                         |
-| POST   | `/api/reports`             | Registra uma ocorrência                     |
-| GET    | `/api/reports`             | Lista ocorrências                           |
-| GET    | `/api/reports/{id}`        | Consulta uma ocorrência                     |
-| PATCH  | `/api/reports/{id}/status` | Atualiza o status de uma ocorrência         |
-| DELETE | `/api/reports/{id}`        | Realiza a exclusão lógica de uma ocorrência |
+| Método | Rota                          | Descrição                                   |
+| ------ | ----------------------------- | ------------------------------------------- |
+| GET    | `/api/health`                 | Verifica se a aplicação está no ar          |
+| GET    | `/api/categories`             | Lista categorias                            |
+| POST   | `/api/users`                  | Cadastra um usuário                         |
+| GET    | `/api/users`                  | Lista usuários                              |
+| GET    | `/api/users/{id}`             | Consulta um usuário                         |
+| POST   | `/api/reports`                | Registra uma ocorrência                     |
+| GET    | `/api/reports`                | Lista ocorrências                           |
+| GET    | `/api/reports/{id}`           | Consulta uma ocorrência                     |
+| PATCH  | `/api/reports/{id}/status`    | Atualiza o status de uma ocorrência         |
+| DELETE | `/api/reports/{id}`           | Realiza a exclusão lógica de uma ocorrência |
+| POST   | `/api/collection-points`      | Cadastra um ecoponto                        |
+| GET    | `/api/collection-points`      | Lista ecopontos                             |
+| GET    | `/api/collection-points/{id}` | Consulta um ecoponto                        |
+| PUT    | `/api/collection-points/{id}` | Atualiza um ecoponto                        |
+| DELETE | `/api/collection-points/{id}` | Remove um ecoponto                          |
 
 As rotas de consulta de ocorrências não devem retornar registros excluídos logicamente.
 

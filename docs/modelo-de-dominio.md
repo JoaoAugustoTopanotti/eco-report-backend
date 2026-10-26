@@ -61,6 +61,22 @@ Principais atributos:
 
 O módulo de imagens está previsto no modelo de dados, mas seu fluxo funcional será desenvolvido posteriormente.
 
+### CollectionPoint (Ecoponto)
+
+Representa um local adequado para o descarte de resíduos.
+
+Principais atributos:
+
+- `id`: identificador único.
+- `name`: nome do ecoponto.
+- `address`: endereço do ecoponto.
+- `acceptedMaterials`: materiais aceitos para descarte.
+- `openingHours`: horário de funcionamento (opcional).
+- `createdAt`: data de criação.
+- `updatedAt`: data da última atualização.
+
+Os ecopontos são independentes das demais entidades e não possuem relacionamentos.
+
 ## 3. Relacionamentos
 
 - **User 1:N Report:** um usuário pode registrar várias ocorrências, mas cada ocorrência pertence a um único usuário.
@@ -108,6 +124,16 @@ erDiagram
         bigint report_id FK
         varchar image_url
         timestamp created_at
+    }
+
+    COLLECTION_POINT {
+        bigint id PK
+        varchar name
+        varchar address
+        varchar accepted_materials
+        varchar opening_hours
+        timestamp created_at
+        timestamp updated_at
     }
 ```
 
